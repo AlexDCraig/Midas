@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-server-deployment
+  labels:
+    app: node-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: node-server
+  template:
+    metadata:
+      labels:
+        app: node-server
+    spec:
+      containers:
+      - name: node-server
+        image: node-server:v0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
