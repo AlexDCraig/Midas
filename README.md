@@ -9,14 +9,21 @@ A cluster consists of a master and its nodes, where master = the cluster co-ordi
 
 Finally, a pod = a grouping of containers on a node. It can be only one container.
 
-Execute minikube:
+# Sample of useful commands.
+
+```shell
+# Execute minikube:
 minikube start
 
-Stop minikube:
+# Stop minikube:
 minikube stop
 
-Delete minikube:
+# Delete minikube:
 minikube delete
+
+# Erase all pods:
+kubectl delete pods --all
+```
 
 Windows deployment details:
 - used the Chocolatey package manager to install kubectl, minikube, Docker, etc.
@@ -28,9 +35,27 @@ https://rominirani.com/tutorial-getting-started-with-kubernetes-on-your-windows-
 
 https://kubernetes.io/docs/tutorials/
 
+https://www.mirantis.com/blog/introduction-to-yaml-creating-a-kubernetes-deployment/
+
+https://medium.com/@maumribeiro/running-your-own-docker-images-in-minikube-for-windows-ea7383d931f6
+
 Code:
 
-# Build Node.js image.
-docker build -t node-server .
+```shell
+# Ensure minikube is running.
+minikube start
+minikube docker-env | Invoke-Expression
 
-docker run node-server
+# Build Node.js image.
+docker build -t node-server:v0 .
+
+# Create a deployment based off the .yaml spec included in this directory.
+kubectl apply -f node-server-deployment.yaml
+
+# Expose the node-server deployment.
+kubectl expose deployment node-server --type=LoadBalancer --port=8080
+
+# Get the externally accessible URL to interface with the node server.
+minikube service node-server --url
+
+```
