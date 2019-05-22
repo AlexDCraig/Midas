@@ -14,6 +14,8 @@ spec:
       labels:
         app: node-server
     spec:
+      hostname: node-server
+      subdomain: alexhoffer01
       containers:
       - name: node-server
         image: node-server:v0
