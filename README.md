@@ -1,13 +1,20 @@
+# Purpose
+Twofold: 
+
+a) To finally setup a nice deployment infrastructure for financial visualizations described in the previous repository ```fintech```. 
+
+b) To get a chance to explore technologies I don't have the opportunity to daily at work (especially Windows scripting, Windows package management, NodeJS...)
+
 # Kubernetes basics
-kubectl = service for running commands against Kubernetes clusters
+```kubectl``` = service for running commands against Kubernetes clusters
 
-minikube = Google's solution to serving up a local Kubernetes cluster. This is a cluster consisting of 1 node allocated on localhost.
+```minikube``` = Google's solution to serving up a local Kubernetes cluster. This is a cluster consisting of 1 node allocated on localhost.
 
-cluster = group of machines to co-ordinate work across.
+```cluster``` = group of machines to co-ordinate work across.
 
-A cluster consists of a master and its nodes, where master = the cluster co-ordinator, and a node = a VM that exists within the cluster.
+A ```cluster``` consists of a ```master``` and its ```node```s, where ```master``` = the ```cluster``` co-ordinator, and a ```node``` = a VM that exists within the cluster.
 
-Finally, a pod = a grouping of containers on a node. It can be only one container.
+Finally, a ```pod``` = a grouping of containers on a node. It can be only one container.
 
 # Sample of useful commands.
 
@@ -64,3 +71,10 @@ minikube service jenkins --url
 ```
 
 Note comments in script that talk about minikube's struggle to define externally accessible IPs.
+
+# Local deployment of nodejs server.
+```shell
+choco install nodejs
+node server.js
+# See active server at "localhost:8080" in browser of choice.
+```
