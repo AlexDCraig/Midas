@@ -62,3 +62,5 @@ minikube service node-server --url
 minikube service jenkins --url
 
 ```
+
+Note comments in script that talk about minikube's struggle to define externally accessible IPs.
