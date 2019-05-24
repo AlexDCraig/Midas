@@ -1,14 +1,23 @@
 var http = require('http');
+var url = require('url');
 var fs = require('fs');
+var path = require('path');
+var express = require('express');
+var header = {'Content-Type': 'text/html'};
+var app = express();
+app.use(express.static(path.join(__dirname, 'templates')));
 
-var handleRequest = function(request, response) {
-    fs.readFile('templates/home.html', function(err, data) {
-        response.writeHead(200, {'Content-Type': 'text/html'});
-	response.write(data);
-	response.end();
+http.createServer(function (request, response) {
+    var query = url.parse(request.url, true);
+    var filename = query.pathname;
+    var filepath = './templates' + filename;
+    fs.readFile(filepath, function (error, data) {
+        if (error) {
+            response.writeHead(404, header);
+            return response.end("404 Not Found");
+        }
+        response.writeHead(200, header);
+        response.write(data);
+        return response.end();
     });
-};
-
-var www = http.createServer(handleRequest);
-www.listen(8080);
-
+}).listen(8080);
