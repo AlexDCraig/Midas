@@ -1,3 +1,5 @@
+# Deploy the application and corresponding Jenkins back-end to a local Kubernetes cluster (minikube) on Windows.
+
 docker-machine restart
 minikube delete
 

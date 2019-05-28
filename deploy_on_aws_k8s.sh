@@ -1,10 +1,14 @@
 #!/bin/bash
-# Can run on AWS EC2 with micro-tier.
+
+# Deploy application using Kubernetes on AWS. This route requires 2 CPUs each node, thus it is not possible to do this without racking up cost (e.g. non-eligible for free tier).
+# This deployment does not use Amazon's managed Kubernetes cluster product EKS.
+
 # IAM user needs these roles: AmazonEC2FullAccess, AmazonRoute53FullAccess, AmazonS3FullAccess, IAMFullAccess, AmazonVPCFullAccess
 # Helpful notes: https://medium.com/containermind/how-to-create-a-kubernetes-cluster-on-aws-in-few-minutes-89dda10354f4
 
 # Install various packages.
-sudo yum install -y git pip
+sudo yum install -y git pip docker kubectl kubeadm kubelet
+git clone https://github.com/AlexDHoffer/kubernetes-investigation.git
 
 # Install, configure AWS CLI.
 pip install awscli --upgrade --user
@@ -28,3 +32,9 @@ kops create secret --name alexdc.k8s.local sshpublickey admin -i ~/.ssh/id_rsa.p
 # Create and deploy k8s cluster.
 kops create cluster --node-count=1 --node-size=t2.micro --zones=us-east-1a --name=alexdc.k8s.local
 kops update cluster --name alexdc.k8s.local --yes
+
+# Apply Kubernetes deployments.
+cd kubernetes-investigation
+kubectl apply -f node-server-deployment.yaml
+kubectl apply -f jenkins-deployment.yaml
+
