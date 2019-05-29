@@ -6,7 +6,7 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'templates')));
 
 app.get('/', function(req, res) {
-    var query = url.parse(request.url, true);
+    var query = url.parse(req.url, true);
     var filename = query.pathname;
     var filepath = './templates' + filename;
     res.render(__dirname + filepath);
