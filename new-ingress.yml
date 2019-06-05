@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: pwa-ingress
+  name: node-server-ingress
   annotations:
     ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -10,5 +10,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: pwa-frontend
+          serviceName: node-server-deployment
           servicePort: 80

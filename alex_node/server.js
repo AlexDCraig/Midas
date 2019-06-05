@@ -12,4 +12,4 @@ app.get('/', function(req, res) {
     res.render(__dirname + filepath);
 });
 
-app.listen(8080);
+app.listen(80);

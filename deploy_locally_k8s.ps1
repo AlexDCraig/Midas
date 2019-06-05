@@ -25,3 +25,9 @@ kubectl expose deployment jenkins --type=NodePort --port=8081
 minikube service node-server-deployment --url
 minikube service jenkins --url
 
+# Expose to the outside world through the VirtualBox VM using an ingress.
+# Use with caution.
+# https://github.com/nginxinc/kubernetes-ingress/issues/158 has a good template for what this should look like
+# kubectl apply -f new-ingress.yaml
+# ssh -i ~/.minikube/machines/minikube/id_rsa docker@$(minikube ip) -L \*:30000:0.0.0.0:30000
+# Load in browser: minikube ip, then copy paste that plus target port into browser
