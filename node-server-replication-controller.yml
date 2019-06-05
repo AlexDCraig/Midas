@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: node-server-rc
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: node-server
+    spec:
+      containers:
+      - name: node-server
+        image: node-server:v0
+        ports:
+        - containerPort: 80
