@@ -1,0 +1,33 @@
+{
+  "name": "midas",
+  "version": "1.0.0",
+  "description": "Financial visualizations hosted locally or remotely",
+  "main": "server.js",
+  "dependencies": {
+    "durandal": "^2.2.0",
+    "express": "^4.17.1",
+    "highcharts": "^7.1.2",
+    "mustache": "^3.0.1",
+    "package.json": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexDHoffer/Midas.git"
+  },
+  "keywords": [
+    "k8s",
+    "finviz",
+    "nodejs"
+  ],
+  "author": "Alex Hoffer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexDHoffer/Midas/issues"
+  },
+  "homepage": "https://github.com/AlexDHoffer/Midas#readme"
+}

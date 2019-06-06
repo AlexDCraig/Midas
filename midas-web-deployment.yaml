@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-server-deployment
+  name: midas-web-deployment
   labels:
-    app: node-server
+    app: midas-web
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: node-server
+      app: midas-web
   template:
     metadata:
       labels:
-        app: node-server
+        app: midas-web
     spec:
-      hostname: node-server
+      hostname: midas-web
       subdomain: alexhoffer01
       containers:
-      - name: node-server
-        image: node-server:v0
+      - name: midas-web
+        image: midas-web:v0
         imagePullPolicy: Never
         ports:
         - containerPort: 80

@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+    midas-web:
+        build: .
+        restart: always
+

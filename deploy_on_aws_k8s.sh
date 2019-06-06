@@ -35,6 +35,6 @@ kops update cluster --name alexdc.k8s.local --yes
 
 # Apply Kubernetes deployments.
 cd kubernetes-investigation
-kubectl apply -f node-server-deployment.yaml
+kubectl apply -f midas-web-deployment.yaml
 kubectl apply -f jenkins-deployment.yaml
 

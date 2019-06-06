@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: midas-server-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /home.html
+        backend:
+          serviceName: midas-web-deployment
+          servicePort: 80
