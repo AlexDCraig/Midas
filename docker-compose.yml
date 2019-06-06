@@ -2,6 +2,8 @@ version: "3"
 
 services:
     midas-web:
-        build: .
+        build: ./midas
         restart: always
+    midas-data:
+        build: ./midas-data
 

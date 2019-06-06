@@ -9,8 +9,9 @@ minikube docker-env | Invoke-Expression
 
 kubectl delete --all pods
 
-# Build Node.js image.
-docker build -t midas-web:v0 .
+# Build Node.js image and back-end data processing Python scripts image.
+docker build -t midas-web:v0 midas/
+docker build -t midas-data:v0 midas-data/
 
 # Create two deployments, one based off the local node-server image and one based off of a remotely pulled Jenkins image.
 kubectl apply -f midas-web-deployment.yaml
