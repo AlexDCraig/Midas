@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: midas-data-deployment
+  labels:
+    app: midas-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: midas-data
+  template:
+    metadata:
+      labels:
+        app: midas-data
+    spec:
+      containers:
+      - name: midas-data
+        image: midas-data:v0
+        imagePullPolicy: Never
