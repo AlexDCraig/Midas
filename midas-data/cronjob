@@ -1,0 +1,1 @@
+0    0    *    *    *    python emails.py "Alex's Checking" >> /var/log/cron.log 2>&1

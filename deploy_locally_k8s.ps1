@@ -17,11 +17,13 @@ docker build -t midas-data:v0 midas-data/
 kubectl apply -f deployments/midas-web-deployment.yaml
 kubectl apply -f deployments/jenkins-deployment.yaml
 kubectl apply -f deployments/midas-data-deployment.yaml
+kubectl apply -f deployments/midas-mongo-deployment.yaml
 
 # Expose the node-server deployment and the Jenkins deployment.
 # We want NodePort type. LoadBalancer is a type native to cloud services.
 kubectl expose deployment midas-web-deployment --type=NodePort --port=80
 kubectl expose deployment jenkins --type=NodePort --port=8080
+kubectl expose deployment midas-mongo-deployment --type=NodePort --port=27017
 
 # Get the externally accessible (to your own network) URLs.
 minikube service midas-web-deployment --url

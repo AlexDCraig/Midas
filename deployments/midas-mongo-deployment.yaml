@@ -1,0 +1,26 @@
+# Useful resources: 
+# https://kubernetes.io/blog/2017/01/running-mongodb-on-kubernetes-with-statefulsets/
+# https://www.mongodb.com/blog/post/running-mongodb-as-a-microservice-with-docker-and-kubernetes
+# https://severalnines.com/blog/deploying-mongodb-using-docker
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: midas-mongo-deployment
+  labels:
+    app: midas-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: midas-mongo
+  template:
+    metadata:
+      labels:
+        app: midas-mongo
+    spec:
+      containers:
+      - name: mongo-node1
+        image: mongo
+        ports: 
+        - containerPort: 27017
+
