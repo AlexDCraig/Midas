@@ -7,4 +7,4 @@ RUN git clone https://github.com/AlexDHoffer/fintech.git /midas-data
 WORKDIR /midas-data/email_handler
 COPY credentials.json .
 RUN pip install -r requirements.txt
-ENTRYPOINT ["python", "emails.py", "Alex's Checking"]
+ENTRYPOINT ["python", "emails.py", "Alex's Checking", "midas-mongo-deployment:27017"]

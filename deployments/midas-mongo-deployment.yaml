@@ -21,6 +21,12 @@ spec:
       containers:
       - name: mongo-node1
         image: mongo
+        volumeMounts:
+        - name: midas-mongo-storage
+          mountPath: /data/midas-mongo-storage
         ports: 
         - containerPort: 27017
+      volumes:
+      - name: midas-mongo-storage
+        emptyDir: {}
 
