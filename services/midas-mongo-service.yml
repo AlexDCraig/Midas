@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: midas-mongo-service
+spec:
+  ports:
+  - name: midas-mongo-port
+    protocol: "TCP"
+    port: 27017
+    targetPort: 27017
+  selector:
+    app: midas-mongo

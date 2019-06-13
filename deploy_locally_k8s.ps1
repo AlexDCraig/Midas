@@ -1,4 +1,4 @@
-# Deploy the application and corresponding Jenkins back-end to a local Kubernetes cluster (minikube) on Windows.
+# Deploy each component of the application as a Kubernetes deployment, using Windows tools.
 
 docker-machine restart
 minikube delete
@@ -13,17 +13,21 @@ kubectl delete --all pods
 docker build -t midas-web:v0 midas/
 docker build -t midas-data:v0 midas-data/
 
-# Create three deployments: one off the local node-server image, one based off of a remotely pulled Jenkins image, one off the data processing local image.
+# Apply the mongodb deployment and create a service for it before the others.
+# We want it to be first so that the other deployments can access it immediately.
+# We can access mongodb from within a pod by using 'mongo midas-mongo-deployment:27017'. Of course, the pod must have mongodb installed on it.
+kubectl apply -f deployments/midas-mongo-deployment.yaml
+kubectl expose deployment midas-mongo-deployment --type=NodePort --port=27017
+
+# We're applying deployments for our front-end web UI, back-end Jenkins server, and a pod that will strictly handle our data processing.
 kubectl apply -f deployments/midas-web-deployment.yaml
 kubectl apply -f deployments/jenkins-deployment.yaml
 kubectl apply -f deployments/midas-data-deployment.yaml
-kubectl apply -f deployments/midas-mongo-deployment.yaml
 
 # Expose the node-server deployment and the Jenkins deployment.
 # We want NodePort type. LoadBalancer is a type native to cloud services.
 kubectl expose deployment midas-web-deployment --type=NodePort --port=80
 kubectl expose deployment jenkins --type=NodePort --port=8080
-kubectl expose deployment midas-mongo-deployment --type=NodePort --port=27017
 
 # Get the externally accessible (to your own network) URLs.
 minikube service midas-web-deployment --url
