@@ -19,10 +19,12 @@ docker build -t midas-data:v0 midas-data/
 kubectl apply -f deployments/midas-mongo-deployment.yaml
 kubectl expose deployment midas-mongo-deployment --type=NodePort --port=27017
 
+# We want our midas-data deployment to be next, so it can have a little extra time to populate the database for our web service to use.
+kubectl apply -f deployments/midas-data-deployment.yaml
+
 # We're applying deployments for our front-end web UI, back-end Jenkins server, and a pod that will strictly handle our data processing.
 kubectl apply -f deployments/midas-web-deployment.yaml
 kubectl apply -f deployments/jenkins-deployment.yaml
-kubectl apply -f deployments/midas-data-deployment.yaml
 
 # Expose the node-server deployment and the Jenkins deployment.
 # We want NodePort type. LoadBalancer is a type native to cloud services.

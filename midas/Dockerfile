@@ -3,4 +3,4 @@ EXPOSE 80
 COPY . /midas
 WORKDIR /midas
 RUN npm install package.json
-CMD ["node", "server.js"]
+ENTRYPOINT ["node", "server.js", "--database_info", "midas-mongo-deployment:27017"]
