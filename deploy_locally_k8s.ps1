@@ -26,9 +26,6 @@ kubectl apply -f deployments/midas-data-deployment.yaml
 kubectl apply -f deployments/midas-web-deployment.yaml
 kubectl apply -f deployments/jenkins-deployment.yaml
 
-# Setup Prometheus pod to monitor the Midas web service.
-kubectl create configmap prometheus-example-cm --from-file configmaps/midas-web-monitoring.yml
-
 # Expose the node-server deployment and the Jenkins deployment.
 # We want NodePort type. LoadBalancer is a type native to cloud services.
 kubectl expose deployment midas-web-deployment --type=NodePort --port=80
@@ -37,6 +34,11 @@ kubectl expose deployment jenkins --type=NodePort --port=8080
 # Get the externally accessible (to your own network) URLs.
 minikube service midas-web-deployment --url
 minikube service jenkins --url
+
+# Setup Prometheus pod to monitor the Midas web service.
+kubectl create configmap prometheus-example-cm --from-file configmaps/midas-web-monitoring.yml
+kubectl apply -f deployments/prometheus.yml
+kubectl expose deployment prometheus --type=NodePort --port=9090
 
 # Access the midas url in your browser by taking the exact url/port combo given from the command above and appending the filename to it (e.g. /home.html).
 # Acces the Jenkins url in your browser by just taking the exact url/port combo.
