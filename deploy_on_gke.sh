@@ -4,29 +4,29 @@
 # These directions are geared towards situations where you have shell access to a cluster.
 # The only real requirement is that you need a credentials.json in the initial working directory.
 
-git clone https://github.com/AlexDHoffer/Midas.git
-cp credentials.json Midas/midas-data
-cd Midas
+cp credentials.json midas-data
 export PROJECT_ID="$(gcloud config get-value project -q)"
 
 # Build and tag the images.
 docker build -t grc.io/${PROJECT_ID}/midas-data:v0 midas-data/
+docker tag midas-data:v0 gcr.io/${PROJECT_ID}/midas-data:v0
 docker build -t gcr.io/${PROJECT_ID}/midas-web:v0 midas/
+docker tag midas-web:v0 gcr.io/${PROJECT_ID}/midas-web:v0
 
 # Push the images to the Google registry associated with your GKE project.
-gcloud auth configure-docker
+gcloud auth configure-docker --quiet
 docker push gcr.io/${PROJECT_ID}/midas-data:v0
 docker push gcr.io/${PROJECT_ID}/midas-web:v0
 
 kubectl apply -f deployments/midas-mongo-deployment.yaml
 kubectl expose deployment midas-mongo-deployment --type=LoadBalancer --port=27017
 
-# Modify the midas-data deployment by modifying ImagePullPolicy to be "Always". And, set the image in there to exactly match the one that pops up
-# when you run "docker images". Something like this: gcr.io/midas-244222/midas-data:v0
-kubectl apply -f deployments/midas-data-deployment
+# Modify the midas-data and midas-web deployment to directly refer to the images we just built, tagged, and pushed.
+# Then, tell the deployment to always search for an image to pull.
+python prepare_for_gke.py
 
-# Do the same modifications for the midas-web deployment. Then:
-kubectl apply -f deployments/midas-web-deployment
+kubectl apply -f deployments/midas-data-deployment.yaml
+kubectl apply -f deployments/midas-web-deployment.yaml
 
 kubectl expose deployment midas-web-deployment --type=LoadBalancer --port=80
 
