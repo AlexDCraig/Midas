@@ -3,6 +3,7 @@
 # Unfortunately, the Gmail API does not allow initial authentication from a script/headless environment. 
 # This authentication must be performed in an environment where a browser can be accessed to accept
 # a license agreement. This script is to be run on a default Debian Linux distro on the Google Compute Engine.
+# Name the VM 'crdhost'.
 # You MUST run these from the SSH screen afforded to you in the GCP UI.
 # There are manual steps to follow afterwards. They're described as they come up.
 

@@ -30,3 +30,5 @@ kubectl apply -f deployments/midas-web-deployment.yaml
 
 kubectl expose deployment midas-web-deployment --type=LoadBalancer --port=80
 
+# SSH into data VM: gcloud compute ssh crdhost --command ...
+# Run script in data VM (midas-data-deployment) that publishes data to midas-mongo service.
