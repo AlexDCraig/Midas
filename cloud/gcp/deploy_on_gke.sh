@@ -21,7 +21,7 @@ kubectl expose deployment midas-mongo-deployment --type=LoadBalancer --port=2701
 
 # Modify the midas-web deployment to directly refer to the image we just built, tagged, and pushed.
 # Then, tell the deployment to always search for an image to pull.
-python prepare_for_gke.py
+python cloud/gcp/prepare_for_gke.py
 
 kubectl apply -f deployments/midas-web-deployment.yaml
 kubectl expose deployment midas-web-deployment --type=LoadBalancer --port=80
