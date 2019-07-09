@@ -8,7 +8,7 @@ Flexibly deployable visualizations of banking data.
 Use a package manager and install ```docker-machine``` and ```kubectl``` and ```minikube``` and run:
 ```./deploy_locally_k8s.ps1```
 
-You can also run via:
+This is a bit deprecated (for now), but you can also run via:
 ```docker-compose up --build -d```
 
 ### AWS deployment using Kops:
@@ -33,5 +33,9 @@ cd Midas/cloud/gcp
 ```
 
 #### Step 2: Spin up Compute Engine (VM) that gathers data and publishes it to the database through the external service endpoint.
+
+TBD
+
+### Microsoft Azure deployment:
 
 TBD
