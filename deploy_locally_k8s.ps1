@@ -34,6 +34,7 @@ kubectl expose deployment jenkins --type=NodePort --port=8080
 # Get the externally accessible (to your own network) URLs.
 minikube service midas-web-deployment --url
 minikube service jenkins --url
+minikube service midas-mongo-deployment --url
 
 # Access the midas url in your browser by taking the exact url/port combo given from the command above and appending the filename to it (e.g. /home.html).
 # Acces the Jenkins url in your browser by just taking the exact url/port combo.
