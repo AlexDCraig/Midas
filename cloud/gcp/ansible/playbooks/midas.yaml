@@ -1,0 +1,8 @@
+- name: Create an instance
+  hosts: cloud
+  gather_facts: no
+  vars_files:
+    - "environments/midas/group_vars/common"
+  roles:
+    - create_midas_data_vm
+
