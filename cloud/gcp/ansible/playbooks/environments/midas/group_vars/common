@@ -3,4 +3,6 @@ gcp_cred_kind: serviceaccount
 gcp_cred_file: /tmp/auth.json
 zone: "us-central1-a"
 region: "us-central1"
+midas_vm_network: "midas-vm-network"
+midas_vm_address: "midas-vm-address"
 
