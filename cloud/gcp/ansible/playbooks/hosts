@@ -1,0 +1,6 @@
+[cloud]
+localhost
+
+[cloud:vars]
+ansible_connection=local
+

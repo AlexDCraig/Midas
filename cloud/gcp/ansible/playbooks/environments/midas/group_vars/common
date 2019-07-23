@@ -1,0 +1,6 @@
+gcp_project: midas-244222
+gcp_cred_kind: serviceaccount
+gcp_cred_file: /tmp/auth.json
+zone: "us-central1-a"
+region: "us-central1"
+
