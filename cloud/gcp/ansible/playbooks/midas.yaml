@@ -5,4 +5,14 @@
     - "environments/midas/group_vars/common"
   roles:
     - create_midas_data_vm
+  tags: ["midas_data_vm"]
+
+- name: Create a GKE cluster
+  hosts: cloud
+  gather_facts: no
+  vars_files:
+    - "environments/midas/group_vars/common"
+  roles:
+    - create_midas_gke_cluster
+  tags: ["midas_gke_cluster"]
 

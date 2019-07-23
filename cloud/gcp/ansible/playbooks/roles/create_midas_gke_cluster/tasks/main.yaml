@@ -1,0 +1,14 @@
+- name: Create a GKE cluster
+  gcp_container_cluster:
+   name: 'midas-gke-cluster'
+   network: "{{ midas_vm_network }}"
+   location: "{{ zone }}"
+   project: "{{ gcp_project }}"
+   auth_kind: "{{ gcp_cred_kind }}"
+   service_account_file: "{{ gcp_cred_file }}"
+   initial_node_count: 3
+   scopes:
+     - https://www.googleapis.com/auth/cloud-platform
+   state: present
+  register: cluster
+
