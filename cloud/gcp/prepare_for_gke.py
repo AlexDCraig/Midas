@@ -1,9 +1,7 @@
 import os
 
-project_id = os.environ['PROJECT_ID']
-base_string = 'gcr.io/{}'.format(project_id)
 old_midas_web = 'midas-web:v0'
-midas_web = '{}/{}'.format(base_string, old_midas_web)
+midas_web = 'alexdchoffer/{}'.format(old_midas_web)
 base_filepath = os.path.expanduser("~/Midas/cloud/gcp/Midas/deployments")
 midas_web_filepath = '{}/midas-web-deployment.yaml'.format(base_filepath)
 
