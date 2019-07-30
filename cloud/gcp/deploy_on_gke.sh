@@ -13,12 +13,12 @@ docker pull alexdchoffer/midas-web:v0
 kubectl apply -f deployments/midas-mongo-deployment.yaml
 kubectl expose deployment midas-mongo-deployment --type=LoadBalancer --port=27017
 
-kubectl apply -f deployments/midas-web-deployment.yaml
-kubectl expose deployment midas-web-deployment --type=LoadBalancer --port=80
-
 # Modify the midas-web deployment to directly refer to the image we just built, tagged, and pushed.
 # Then, tell the deployment to always search for an image to pull.
 python cloud/gcp/prepare_for_gke.py
+
+kubectl apply -f deployments/midas-web-deployment.yaml
+kubectl expose deployment midas-web-deployment --type=LoadBalancer --port=80
 
 # SSH into data VM: gcloud compute ssh crdhost --command ...
 # Run script in data VM (midas-data-deployment) that publishes data to midas-mongo service.
