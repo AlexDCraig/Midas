@@ -1,0 +1,10 @@
+apiVersion: "rbac.istio.io/v1alpha1"
+kind: ServiceRole
+metadata:
+  name: midas-home
+  namespace: default
+spec:
+  rules:
+  - services: ["midas-web-deployment"]
+    methods: ["GET"]
+

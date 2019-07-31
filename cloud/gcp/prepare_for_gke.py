@@ -1,9 +1,10 @@
+import argparse
 import os
 
 old_midas_web = 'midas-web:v0'
 midas_web = 'alexdchoffer/{}'.format(old_midas_web)
-base_filepath = os.path.expanduser("~/Midas/cloud/gcp/Midas/deployments")
-midas_web_filepath = '{}/midas-web-deployment.yaml'.format(base_filepath)
+base_filepath = None
+midas_web_filepath = None
 
 def replace_strings_in_deployment(filepath, old_string, new_string):
     amended_text = None
@@ -17,5 +18,11 @@ def replace_strings_in_deployment(filepath, old_string, new_string):
 def prep_for_gke():
     replace_strings_in_deployment(midas_web_filepath, old_midas_web, midas_web)
 
-prep_for_gke()
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('path')
+    args = parser.parse_args()
+    base_filepath = '{}/Midas/deployments'.format(args.path)
+    midas_web_filepath = '{}/midas-web-deployment.yaml'.format(base_filepath)
+    prep_for_gke()
 
